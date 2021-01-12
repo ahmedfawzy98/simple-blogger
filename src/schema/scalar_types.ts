@@ -1,4 +1,5 @@
-import { GraphQLDateTime } from 'graphql-iso-date';
+import { DateTimeResolver, EmailAddressResolver } from 'graphql-scalars';
 import {asNexusMethod} from 'nexus';
 
-export const timeStamp = asNexusMethod(GraphQLDateTime, 'timestamp');
+export const timeStamp = asNexusMethod(DateTimeResolver, 'timestamp');
+export const email = asNexusMethod(EmailAddressResolver, 'email');

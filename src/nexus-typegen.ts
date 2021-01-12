@@ -11,6 +11,10 @@ declare global {
      * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
     timestamp<FieldName extends string>(fieldName: FieldName, opts?: core.CommonInputFieldConfig<TypeName, FieldName>): void // "DateTime";
+    /**
+     * A field whose value conforms to the standard internet email address format as specified in RFC822: https://www.w3.org/Protocols/rfc822/.
+     */
+    email<FieldName extends string>(fieldName: FieldName, opts?: core.CommonInputFieldConfig<TypeName, FieldName>): void // "EmailAddress";
   }
 }
 declare global {
@@ -19,6 +23,10 @@ declare global {
      * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
     timestamp<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "DateTime";
+    /**
+     * A field whose value conforms to the standard internet email address format as specified in RFC822: https://www.w3.org/Protocols/rfc822/.
+     */
+    email<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "EmailAddress";
   }
 }
 
@@ -40,15 +48,16 @@ export interface NexusGenScalars {
   Boolean: boolean
   ID: string
   DateTime: any
+  EmailAddress: any
 }
 
 export interface NexusGenObjects {
   Mutation: {};
   Query: {};
   User: { // root type
-    _id: string; // String!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
-    email: string; // String!
+    email: NexusGenScalars['EmailAddress']; // EmailAddress!
+    id: string; // String!
     name: string; // String!
     password: string; // String!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
@@ -75,9 +84,9 @@ export interface NexusGenFieldTypes {
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
   User: { // field return type
-    _id: string; // String!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
-    email: string; // String!
+    email: NexusGenScalars['EmailAddress']; // EmailAddress!
+    id: string; // String!
     name: string; // String!
     password: string; // String!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
@@ -94,9 +103,9 @@ export interface NexusGenFieldTypeNames {
     users: 'User'
   }
   User: { // field return type name
-    _id: 'String'
     createdAt: 'DateTime'
-    email: 'String'
+    email: 'EmailAddress'
+    id: 'String'
     name: 'String'
     password: 'String'
     updatedAt: 'DateTime'

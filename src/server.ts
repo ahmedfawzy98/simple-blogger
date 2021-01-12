@@ -2,8 +2,15 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { schema } from './schema';
 import { connect } from './utils/db';
+import { typeDefs, resolvers } from 'graphql-scalars';
 
-const server = new ApolloServer({ schema });
+const server = new ApolloServer({
+  schema,
+  typeDefs: [ ...typeDefs ],
+  resolvers: {
+    ...resolvers,
+  },
+});
 
 const app = express();
 server.applyMiddleware({ app })

@@ -11,9 +11,9 @@ import { User } from '../models/user';
 export const user = objectType({
   name: 'User',
   definition(t) {
-    t.nonNull.string('_id')
+    t.nonNull.string('id')
     t.nonNull.string('name')
-    t.nonNull.string('email')
+    t.nonNull.email('email')
     t.nonNull.string('password')
     t.nonNull.timestamp('createdAt')
     t.nonNull.timestamp('updatedAt')
@@ -23,8 +23,8 @@ export const user = objectType({
 export const getUsers = queryField('users', {
   type: nonNull(list(nonNull('User'))),
   resolve: async (parent, args, ctx) => {
-    return await User.find().lean();
-  }
+    return await User.find();
+  },
 });
 
 export const getUser = queryField('user', {
@@ -33,9 +33,7 @@ export const getUser = queryField('user', {
     email: nonNull(stringArg()),
   },
   resolve: async (parent, args, ctx): Promise<any> => {
-    let user = await User.findOne({...args}).exec();
-    console.log(user);
-    return user;
+    return await User.findOne({...args}).exec();
   }
 });
 
@@ -47,11 +45,6 @@ export const createUser = mutationField('createUser', {
     password: nonNull(stringArg()),
   },
   resolve: async (parent, args, ctx): Promise<any> => {
-    let user = new User({
-      name: args.name,
-      email: args.email,
-      password: args.password
-    });
-    return await user.save();
+    return await User.create({...args});
   }
 });
