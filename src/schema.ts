@@ -1,4 +1,3 @@
-import {DateTime} from 'graphql-scalars/mocks';
 import { makeSchema, objectType, queryType } from 'nexus';
 import { join } from 'path';
 import * as allTypes from './schema/index';

@@ -32,7 +32,7 @@ export const getUser = queryField('user', {
   args: {
     email: nonNull(stringArg()),
   },
-  resolve: async (parent, args, ctx): Promise<any> => {
+  resolve: async (parent, args, ctx) => {
     return await User.findOne({...args}).exec();
   }
 });
@@ -44,7 +44,7 @@ export const createUser = mutationField('createUser', {
     email: nonNull(stringArg()),
     password: nonNull(stringArg()),
   },
-  resolve: async (parent, args, ctx): Promise<any> => {
+  resolve: async (parent, args, ctx) => {
     return await User.create({...args});
   }
 });

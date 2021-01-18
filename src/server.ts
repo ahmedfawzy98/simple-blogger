@@ -18,6 +18,7 @@ server.applyMiddleware({ app })
 export const start = async () => {
   try {
     await connect();
+    console.log('Connected to the database');
     app.listen(4000, () => {
       console.log('🚀 Server is running and listening to http://localhost:4000/graphql');
     });
