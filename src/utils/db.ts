@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 export const connect = () => {
-  return mongoose.connect('mongodb://localhost:27017/simple-blogging', {
+  return mongoose.connect(`${process.env.DB_URL}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
