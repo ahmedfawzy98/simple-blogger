@@ -20,7 +20,7 @@ server.applyMiddleware({ app })
 
 export const start = async () => {
   try {
-    await connect();
+    await connect(`${process.env.DB_URL}`);
     console.log('Connected to the database');
     app.listen(process.env.PORT, () => {
       console.log(`🚀 Server is running and listening to http://localhost:${process.env.PORT}/graphql`);
