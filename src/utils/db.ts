@@ -5,5 +5,6 @@ export const connect = (url: string) => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: false
   });
 }

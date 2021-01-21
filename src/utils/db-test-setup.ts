@@ -2,6 +2,7 @@ import cuid from 'cuid';
 import _ from 'lodash';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import { connect } from '../utils/db';
 
 dotenv.config();
 
@@ -13,7 +14,7 @@ beforeEach(async () => {
   const db = process.env.TEST_DB_URL + cuid();
   if(mongoose.connection.readyState === 0) {
     try {
-      await mongoose.connect(db, { useNewUrlParser: true })
+      await connect(db);
       await clearDB();
     } catch(e) {
       console.log('Connection error');
