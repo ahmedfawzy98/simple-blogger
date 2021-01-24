@@ -1,6 +1,6 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import { schema } from './schema';
+import schema from './schema';
 import { connect } from './utils/db';
 import { typeDefs, resolvers } from 'graphql-scalars';
 import dotenv from 'dotenv';
@@ -10,9 +10,7 @@ dotenv.config();
 const server = new ApolloServer({
   schema,
   typeDefs: [ ...typeDefs ],
-  resolvers: {
-    ...resolvers,
-  },
+  resolvers: { ...resolvers },
 });
 
 const app = express();

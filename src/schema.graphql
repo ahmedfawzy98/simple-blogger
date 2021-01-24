@@ -2,6 +2,12 @@
 ### Do not make changes to this file directly
 
 
+input createUserInput {
+  email: EmailAddress!
+  name: String!
+  password: String!
+}
+
 """
 A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
 """
@@ -13,13 +19,20 @@ A field whose value conforms to the standard internet email address format as sp
 scalar EmailAddress
 
 type Mutation {
-  createUser(email: String!, name: String!, password: String!): User
+  createUser(data: createUserInput): User
+  deleteUser(where: userWhereUniqueInput): User
+  updateUser(data: updateUserInput, where: userWhereUniqueInput): User
 }
 
 type Query {
   hello: String
-  user(email: String!): User
+  user(where: userWhereUniqueInput): User
   users: [User!]!
+}
+
+input updateUserInput {
+  name: String
+  password: String
 }
 
 type User {
@@ -29,4 +42,8 @@ type User {
   name: String!
   password: String!
   updatedAt: DateTime!
+}
+
+input userWhereUniqueInput {
+  email: EmailAddress!
 }

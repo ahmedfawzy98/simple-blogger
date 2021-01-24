@@ -1,6 +1,6 @@
 import { makeSchema } from 'nexus';
 import { join } from 'path';
-import * as allTypes from './schema/index';
+import * as allTypes from './typeDefs/index';
 
 export const schema = makeSchema({
   types: [allTypes],
@@ -9,3 +9,5 @@ export const schema = makeSchema({
     schema: join(__dirname, '.', 'schema.graphql'),
   },
 });
+
+export default schema;
